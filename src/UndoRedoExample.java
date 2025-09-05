@@ -9,6 +9,9 @@ public class UndoRedoExample {
         clear();
         Printer.echoln(green("undo-redo example"));
         Printer.echoln(white("================="));
+        Printer.echoln();
+        String name = ScannerUtil.trimmedPrompt("What's your name? ");
+        Printer.echoln("Hi, \u001b[97;101m" + name + "\u001b[0m");
     }
 
     private static String green(String text) {
