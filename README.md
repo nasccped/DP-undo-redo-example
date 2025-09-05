@@ -1,7 +1,7 @@
 <div align="center">
 
-UndoRedoExample
-===============
+DP-undo-redo-example
+====================
 
 [![built in](https://img.shields.io/badge/built_in-kojamp_0.1.1-blue?)](https://github.com/nasccped/kojamp)
 [![project kind: java](https://img.shields.io/badge/project_kind-java-orange?)](#)
