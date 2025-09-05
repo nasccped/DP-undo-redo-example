@@ -5,21 +5,19 @@
 
 public class UndoRedoExample {
 
-    private static String turnGreen(String text) {
-        return "\u001b[92m" + text + "\u001b[0m";
-    }
-
-    private static void println(Object o) {
-        System.out.println(o);
-    }
-
-    private static String greenGreeting(String name) {
-        return "Hello, " + turnGreen(name) + "!";
-    }
-
     public static void main(String[] args) {
-        String projectName = "UndoRedoExample";
-        println(greenGreeting(projectName));
+        clear();
+        Printer.echoln(green("undo-redo example"));
+        Printer.echoln(white("================="));
     }
 
+    private static String green(String text) {
+        return String.format("\u001b[92m%s\u001b[0m", text);
+    }
+
+    private static String white(String text) {
+        return String.format("\u001b[97m%s\u001b[0m", text);
+    }
+
+    private static void clear() { Printer.echo("\u001b[2J\u001b[H"); }
 }
