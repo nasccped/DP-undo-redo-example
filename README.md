@@ -49,6 +49,38 @@ Now, we can:
 - clear `redo` stack whenever a new states comes in our _"UndoRedo"_
   machine.
 
+## Cloning, compiling and running
+
+To clone the project you can:
+
+```sh
+# clone using git
+git clone https://github.com/nasccped/DP-undo-redo-example
+# remove git folder (works for bash based terminals, only)
+rm -rf DP-undo-redo-example/.git/
+# goto dir
+cd DP-undo-redo-example
+```
+
+### Compiling
+
+Since this project was built under the kojamp[^kojamp] project
+manager, you can use it to handle the project, or:
+
+- compile using a bash terminal (Linux):
+```sh
+javac $(find src -type f -name **.java) -d out
+```
+- compile using a powershell terminal (Windows):
+```powershell
+javac (Get-ChildItem -Recurse -Path src -Filter *.java | ForEach-Object { $_.FullName }) -d out
+```
+
+Finally, you can execute the program by running:
+```sh
+java --class-path out IteratorExample
+```
+
 [^design-patterns-book]: Design Patters: Elements of Reusable
   Object-Oriented Software is a software engineering book that
   describes software design patterns. You can find it at
@@ -57,3 +89,7 @@ Now, we can:
 [^lifo]: **LIFO** is a principle which dictates that the most
   recently added element to a collection is the first one to be
   removed or processed. This is analogous to a stack of plates.
+
+[^kojamp]: Kojamp is a Java and Kotlin project manager I built. You
+  can find more info on it's
+  [official repository](https://github.com/nasccped/kojamp)
