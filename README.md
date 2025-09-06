@@ -81,6 +81,20 @@ Finally, you can execute the program by running:
 java --class-path out IteratorExample
 ```
 
+## Where's the `Command` pattern?
+
+On the _Design Patterns_[^design-patterns-book] book, this kind of
+problem is used to exemplify the _Lexi's_[^lexi-program] program
+building.
+
+The author enforces that our program must be able to execute (and
+_"unexecute"_) some actions. `Command` is a great design pattern to
+this job!
+
+However, I just want to provide this thinking technology of
+_"goNext/goPrevious"_ in a machine state timeline (shown in
+[image 1](#image-01)).
+
 [^design-patterns-book]: Design Patters: Elements of Reusable
   Object-Oriented Software is a software engineering book that
   describes software design patterns. You can find it at
@@ -93,3 +107,7 @@ java --class-path out IteratorExample
 [^kojamp]: Kojamp is a Java and Kotlin project manager I built. You
   can find more info on it's
   [official repository](https://github.com/nasccped/kojamp)
+
+[^lexi-program]: _Lexi_ is a hypothetical word processor that the
+  authors use throughout the _Design Patterns_[^design-patterns-book]
+  book as a running example to demonstrate different design patterns.
