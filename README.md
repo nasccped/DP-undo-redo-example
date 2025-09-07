@@ -95,6 +95,88 @@ However, I just want to provide this thinking technology of
 _"goNext/goPrevious"_ in a machine state timeline (shown in
 [image 1](#image-01)).
 
+## How our app works?
+
+Our app can be separated into three pieces:
+
+1. user input catching+parsing
+2. the machine itself
+3. utilities used throughout the code
+
+### User input
+
+Before defining the valid user input values, we should think about
+how our machine works.
+
+#### Machine's policy
+
+The machine doesn't work with real states and commands, but it should
+store values as states and run actions. They both come from the user
+input's default type (`String`).
+
+With this in mind, we should be able to turn `String`s into state
+value's or action's types (from the self `String` value).
+
+Let's consider:
+- **unsigned integer (`0`, `312981`, `...`):** as state value's type
+- **action entries (`do_it`, `d`, `...`):** as action kind type
+
+Now, we can parse user input (`String`) to value (`Integer`) or
+action (`Action`) type:
+
+| user input         | type     | inner value        |
+| ------------------ | -------- | ------------------ |
+| `String("dothis")` | `Action` | **do this action** |
+| `String("dothat")` | `Action` | **do that action** |
+| `String("123")`    | `Value`  | **123**            |
+| `...`              | `...`    | **...**            |
+
+All this stuff is done by the `userinput` package. `String` input is
+parsed by the `UserInputStrategy` object, and converted to an
+`AbstractUserInput` child object (like an enum variant).
+
+### Undo/Redo machine
+
+#### Controller
+
+The undo-redo machine stores it's inner attributes (undo and redo
+stacks, coloring styles, inner report). You can call any
+`UndoRedoMachine` method **as long as this doesn't change the inner
+attributes**, otherwise, you'll need to call methods from the
+`MachineController`, which provides methods to handle user input
+(change machine's inner state) and to update machine's report.
+
+#### Commands
+
+The machine provides four different kind of commands:
+
+| command                     | alias | description                                              |
+| --------------------------- | ----- | -------------------------------------------------------- |
+| `undo`                      | `u`   | pop an element from undo stack and send it to redo stack |
+| `redo`                      | `r`   | pop an element from redo stack and send it to undo stack |
+| `<unsigned int>` _(insert)_ | _-_   | insert an element into our machine (to undo stack)       |
+| `quit`                      | `q`   | ends the machine process                                 |
+
+##### Command rules
+
+The `undo` command will works only if the undo stack isn't empty. The
+`redo` command/stack follows the same rule.
+
+Whenever a new item is pushed to our machine, the `redo` stack will
+be clear.
+
+### Utils
+
+This project provides four utils only:
+
+1. `Colors`: a shortcut to use ANSI[^ansi] color escapes without code
+   repetition
+2. `Printer`: a shortcut to avoid `Sytem.out.println` in the entire
+   code
+3. `ScannerUtil`: same as bullet above, but for input getting
+4. `Strategy`: an interface used to return specific outputs based on
+   a defined input
+
 [^design-patterns-book]: Design Patters: Elements of Reusable
   Object-Oriented Software is a software engineering book that
   describes software design patterns. You can find it at
@@ -111,3 +193,7 @@ _"goNext/goPrevious"_ in a machine state timeline (shown in
 [^lexi-program]: _Lexi_ is a hypothetical word processor that the
   authors use throughout the _Design Patterns_[^design-patterns-book]
   book as a running example to demonstrate different design patterns.
+
+[^ansi]: ANSI escape sequences are a standard for in-band signaling
+  to control cursor location, color, font styling, and other options
+  on video text terminals and terminal emulators.
