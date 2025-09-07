@@ -1,4 +1,4 @@
-package strategy;
+package utils;
 
 /**
  * Strategy to be ran with specific types. (I've tried to use static,

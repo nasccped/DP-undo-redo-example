@@ -1,6 +1,6 @@
 package userinput;
 
-import strategy.Strategy;
+import utils.Strategy;
 import userinput.commandinput.CommandInputStrategy;
 
 /**

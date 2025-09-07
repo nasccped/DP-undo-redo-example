@@ -1,6 +1,6 @@
 package userinput.commandinput;
 
-import strategy.Strategy;
+import utils.Strategy;
 
 /**
  * Strategy for CommandInput abstract class. Generate an suitable
