@@ -78,7 +78,7 @@ javac (Get-ChildItem -Recurse -Path src -Filter *.java | ForEach-Object { $_.Ful
 
 Finally, you can execute the program by running:
 ```sh
-java --class-path out IteratorExample
+java --class-path out UndoRedoExample
 ```
 
 ## Where's the `Command` pattern?
